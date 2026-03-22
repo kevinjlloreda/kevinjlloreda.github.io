@@ -72,7 +72,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(10,10,10,0.85);backdrop-fi
 .section-sub{font-size:15px;color:#ffffff}
 
 /* PLANS */
-.plans-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.plans-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%}
 .plan-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:20px;text-decoration:none;transition:all 0.2s;position:relative;overflow:hidden}.plan-card.lifetime-card{border-color:rgba(0,255,106,0.4);box-shadow:0 0 40px rgba(0,255,106,0.12),0 0 80px rgba(0,255,106,0.05);background:linear-gradient(160deg,#161616,#0d1a0f)}
 .plan-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top left,rgba(0,255,106,0.04),transparent 60%);pointer-events:none}
 .plan-card:hover{border-color:rgba(0,255,106,0.3);transform:translateY(-2px);box-shadow:0 16px 48px rgba(0,0,0,0.4)}.plan-card.lifetime-card:hover{border-color:rgba(0,255,106,0.6);box-shadow:0 0 60px rgba(0,255,106,0.2),0 16px 48px rgba(0,0,0,0.4)}
@@ -159,7 +159,7 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:48px
 .partners-grid{animation:up 0.6s 0.1s ease both}
 
 @media(max-width:900px){
-  .plans-grid{grid-template-columns:1fr}
+  .plans-grid{grid-template-columns:1fr;overflow-x:visible}
   .partners-grid{grid-template-columns:1fr 1fr}
   .social-grid{grid-template-columns:1fr}
   nav{padding:0 20px}
@@ -552,6 +552,36 @@ footer {
   transform: translateX(-50%);
 }
 /* ─────────────────────────────────────────────────────── */
+
+
+@media(max-width:700px) {
+  .plans-grid {
+    grid-template-columns: 1fr !important;
+    overflow-x: visible !important;
+  }
+  .plan-card {
+    width: 100% !important;
+    min-width: unset !important;
+  }
+  /* Partners horizontal scroll on mobile with peek */
+  .partners-grid {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory;
+    gap: 12px !important;
+    padding-bottom: 12px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    /* Show peek of next card */
+    padding-right: 40px !important;
+  }
+  .partners-grid::-webkit-scrollbar { display: none; }
+  .partner-card {
+    min-width: 78vw !important;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+  }
+}
 
 </style>
 </head>
