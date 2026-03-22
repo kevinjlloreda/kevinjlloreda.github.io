@@ -314,6 +314,56 @@ p, span, div, a, li, label { color: inherit; }
 }
 
 a.plan-btn{display:block;text-decoration:none;}
+
+/* ADMIN PANEL */
+.admin-trigger { position: fixed; bottom: 20px; right: 20px; width: 12px; height: 12px; background: transparent; border: none; cursor: pointer; z-index: 999; }
+.admin-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 1000; align-items: center; justify-content: center; }
+.admin-overlay.open { display: flex; }
+.admin-box { background: #111; border: 1px solid var(--green); border-radius: 20px; padding: 32px; width: 100%; max-width: 480px; margin: 20px; }
+.admin-box h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 24px; font-weight: 800; color: var(--green); margin-bottom: 6px; }
+.admin-box p { font-size: 13px; color: #aaa; margin-bottom: 24px; }
+.admin-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.admin-field label { font-size: 12px; font-weight: 600; color: #aaa; text-transform: uppercase; letter-spacing: 1px; }
+.admin-field input, .admin-field select { background: #1a1a1a; border: 1px solid #333; border-radius: 8px; padding: 10px 14px; color: #fff; font-size: 14px; font-family: 'DM Sans', sans-serif; outline: none; transition: border-color 0.15s; }
+.admin-field input:focus, .admin-field select:focus { border-color: var(--green); }
+.admin-field select option { background: #1a1a1a; }
+.admin-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.admin-add-btn { width: 100%; background: var(--green); color: #000; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 16px; padding: 13px; border-radius: 10px; border: none; cursor: pointer; margin-top: 4px; transition: all 0.15s; letter-spacing: 0.5px; }
+.admin-add-btn:hover { background: #00e85e; }
+.admin-close { width: 100%; background: transparent; border: 1px solid #333; color: #aaa; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 14px; padding: 10px; border-radius: 10px; cursor: pointer; margin-top: 8px; transition: all 0.15s; }
+.admin-close:hover { border-color: #555; color: #fff; }
+.admin-list { max-height: 160px; overflow-y: auto; margin-bottom: 16px; display: flex; flex-direction: column; gap: 6px; }
+.admin-item { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 8px; padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; font-size: 13px; }
+.admin-item-text { color: #ddd; }
+.admin-item-del { background: none; border: none; color: #555; cursor: pointer; font-size: 16px; padding: 0 4px; transition: color 0.1s; }
+.admin-item-del:hover { color: #ff4444; }
+.admin-pw { margin-bottom: 20px; }
+.admin-pw input { width: 100%; }
+.admin-pw-btn { width: 100%; background: var(--green); color: #000; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 15px; padding: 12px; border-radius: 10px; border: none; cursor: pointer; margin-top: 10px; }
+.admin-section { display: none; }
+.admin-section.visible { display: block; }
+.admin-success { background: rgba(0,255,106,0.1); border: 1px solid rgba(0,255,106,0.3); border-radius: 8px; padding: 10px 14px; font-size: 13px; color: var(--green); text-align: center; margin-top: 12px; display: none; }
+
+
+.slip-win-big {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--green);
+  background: rgba(0,255,106,0.1);
+  border: 1px solid rgba(0,255,106,0.25);
+  border-radius: 6px;
+  padding: 3px 8px;
+  letter-spacing: 0.5px;
+}
+.slip-sport {
+  font-size: 11px !important;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
 </style>
 </head>
 <body>
@@ -527,29 +577,29 @@ a.plan-btn{display:block;text-decoration:none;}
     <div class="social-grid">
 
       <div class="social-card">
-        <div class="social-icon-wrap" style="background:#000;border:1px solid #333">🎵</div>
+        <div class="social-icon-wrap" style="background:#000;border:1px solid #333;display:flex;align-items:center;justify-content:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg></div>
         <div class="social-platform">TikTok</div>
-        <div class="social-handle">@kevpicks</div>
-        <div class="social-count">42K</div>
-        <p class="social-desc">Daily pick breakdowns, hit reactions & bankroll builds.</p>
-        <a href="#" target="_blank" class="social-btn" style="background:#000;color:#fff;border:1px solid #333">Follow on TikTok</a>
+        <div class="social-handle">@aia.kev</div>
+        
+        <p class="social-desc">Free plays, daily lives, pick breakdowns & bankroll builds.</p>
+        <a href="https://www.tiktok.com/@aia.kev?_r=1&_t=ZP-94tVSsffAf1" target="_blank" class="social-btn" style="background:#000;color:#fff;border:1px solid #333">Follow on TikTok</a>
       </div>
 
       <div class="social-card">
-        <div class="social-icon-wrap" style="background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);border:none">📸</div>
+        <div class="social-icon-wrap" style="background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);border:none;display:flex;align-items:center;justify-content:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></div>
         <div class="social-platform">Instagram</div>
         <div class="social-handle">@kevpicks</div>
-        <div class="social-count">28K</div>
-        <p class="social-desc">Pick slips, win screenshots & behind the scenes content.</p>
+        
+        <p class="social-desc">Ladder challenges, behind the scenes & win screenshots.</p>
         <a href="https://www.instagram.com/kevpicks/" target="_blank" class="social-btn" style="background:linear-gradient(135deg,#833ab4,#fd1d1d);color:#fff">Follow on Instagram</a>
       </div>
 
       <div class="social-card">
-        <div class="social-icon-wrap" style="background:#5865F2;border:none">💬</div>
+        <div class="social-icon-wrap" style="background:#5865F2;border:none;display:flex;align-items:center;justify-content:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></div>
         <div class="social-platform">All In Analytics</div>
-        <div class="social-handle">KEVPICKS Server</div>
+        
         <div class="social-count">13.5K</div>
-        <p class="social-desc">Live picks, community chat, and real-time alerts.</p>
+        <p class="social-desc">Daily picks, community chat & real-time alerts.</p>
         <a href="https://discord.gg/fzr3DNRdax" target="_blank" class="social-btn" style="background:#5865F2;color:#fff">Join the Discord</a>
       </div>
 
@@ -570,7 +620,16 @@ a.plan-btn{display:block;text-decoration:none;}
 </footer>
 
 <script>
-const slips = [
+// ============================================================
+// ✏️  RECENT WINS — UPDATE THIS EVERY WEEK OR TWO
+// Just edit the picks below, save the file, re-upload to GitHub
+//
+// sport:  NBA | UCL | MLB | NFL | MARCH | ESPORTS | TENNIS
+// pick:   What the bet was (keep it short)
+// odds:   American odds e.g. -115 or +220
+// win:    Profit on $100 e.g. +$87
+// ============================================================
+const defaultSlips = [
   {sport:'NBA', pick:'LeBron 28+ Pts',      odds:'-115', win:'+$87'},
   {sport:'NBA', pick:'2-Leg Parlay Hit',    odds:'+220', win:'+$220'},
   {sport:'NBA', pick:'Jokić 12+ Ast+Reb',  odds:'-130', win:'+$77'},
@@ -582,14 +641,20 @@ const slips = [
   {sport:'NBA', pick:'Luka 40+ Pts',        odds:'+160', win:'+$160'},
   {sport:'UCL', pick:'Over 2.5 Goals',      odds:'-110', win:'+$91'},
 ];
+// ============================================================
 
+const sportEmoji = {
+  'NBA': '🏀', 'UCL': '⚽', 'MARCH': '🏫', 'MLB': '⚾',
+  'ESPORTS': '🎮', 'TENNIS': '🎾', 'NFL': '🏈',
+};
 const track = document.getElementById('track');
 const outer = document.getElementById('outer');
 
-[...slips,...slips].forEach(s => {
+[...getSlips(),...getSlips()].forEach(s => {
   const d = document.createElement('div');
   d.className = 'slip';
-  d.innerHTML = `<div class="hit-tag">HIT ✓</div><div class="slip-sport">${s.sport}</div><div class="slip-pick">${s.pick}</div><div class="slip-bottom"><div class="slip-odds">${s.odds}</div><div class="slip-win">${s.win}</div></div>`;
+  const emoji = sportEmoji[s.sport] || '🎯';
+  d.innerHTML = `<div class="hit-tag">HIT ✓</div><div class="slip-sport">${emoji} ${s.sport}</div><div class="slip-pick">${s.pick}</div><div class="slip-bottom"><div class="slip-odds">${s.odds}</div><div class="slip-win-big">${s.win}</div></div>`;
   track.appendChild(d);
 });
 
@@ -619,6 +684,167 @@ function copyPartnerCode(btn, code) {
   setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; }, 1500);
 }
 
+
+// ── ADMIN PANEL ─────────────────────────────────────────
+
+
+function calcProfit() {
+  const oddsStr = document.getElementById('newOdds').value.trim();
+  const odds = parseInt(oddsStr);
+  if (isNaN(odds)) { document.getElementById('newWin').value = ''; return; }
+  let profit;
+  if (odds < 0) {
+    profit = (100 / Math.abs(odds)) * 100;
+  } else {
+    profit = odds;
+  }
+  document.getElementById('newWin').value = '+$' + profit.toFixed(0);
+}
+
+const ADMIN_PASSWORD = 'kevpicks2026';
+
+// Load slips from localStorage or fall back to defaults
+function getSlips() {
+  const saved = localStorage.getItem('kevpicks_slips');
+  return saved ? JSON.parse(saved) : [...defaultSlips];
+}
+function saveSlips(s) {
+  localStorage.setItem('kevpicks_slips', JSON.stringify(s));
+}
+
+function openAdmin() {
+  document.getElementById('adminOverlay').classList.add('open');
+  document.getElementById('adminPwInput').value = '';
+  document.getElementById('adminPw').style.display = 'block';
+  document.getElementById('adminPanel').classList.remove('visible');
+  setTimeout(() => document.getElementById('adminPwInput').focus(), 100);
+}
+function closeAdmin() {
+  document.getElementById('adminOverlay').classList.remove('open');
+}
+function checkPw() {
+  const val = document.getElementById('adminPwInput').value;
+  if (val === ADMIN_PASSWORD) {
+    document.getElementById('adminPw').style.display = 'none';
+    document.getElementById('adminPanel').classList.add('visible');
+    renderAdminList();
+  } else {
+    document.getElementById('adminPwInput').style.borderColor = '#ff4444';
+    setTimeout(() => document.getElementById('adminPwInput').style.borderColor = '#333', 1000);
+  }
+}
+function renderAdminList() {
+  const list = document.getElementById('adminList');
+  const slips = getSlips();
+  if (slips.length === 0) { list.innerHTML = '<div style="color:#555;font-size:13px;text-align:center;padding:12px">No wins yet</div>'; return; }
+  list.innerHTML = slips.map((s, i) => `
+    <div class="admin-item">
+      <span class="admin-item-text">${s.sport} · ${s.pick} · ${s.odds} · ${s.win}</span>
+      <button class="admin-item-del" onclick="deleteWin(${i})">✕</button>
+    </div>`).join('');
+}
+function addWin() {
+  const sport = document.getElementById('newSport').value;
+  const pick  = document.getElementById('newPick').value.trim();
+  const odds  = document.getElementById('newOdds').value.trim();
+  const win   = document.getElementById('newWin').value.trim() || '+$' + (parseInt(document.getElementById('newOdds').value) < 0 ? (100 / Math.abs(parseInt(document.getElementById('newOdds').value)) * 100).toFixed(0) : parseInt(document.getElementById('newOdds').value));
+  if (!pick || !odds || !win) return;
+  const slips = getSlips();
+  slips.unshift({sport, pick, odds, win});
+  saveSlips(slips);
+  document.getElementById('newPick').value = '';
+  document.getElementById('newOdds').value = '';
+  document.getElementById('newWin').value = '';
+  renderAdminList();
+  rebuildCarousel();
+  const s = document.getElementById('adminSuccess');
+  s.style.display = 'block';
+  setTimeout(() => s.style.display = 'none', 2500);
+}
+function deleteWin(i) {
+  const slips = getSlips();
+  slips.splice(i, 1);
+  saveSlips(slips);
+  renderAdminList();
+  rebuildCarousel();
+}
+function rebuildCarousel() {
+  const sportEmoji = {
+  'NBA': '🏀', 'UCL': '⚽', 'MARCH': '🏫', 'MLB': '⚾',
+  'ESPORTS': '🎮', 'TENNIS': '🎾', 'NFL': '🏈',
+};
+const track = document.getElementById('track');
+  track.innerHTML = '';
+  const slips = getSlips();
+  [...slips, ...slips].forEach(s => {
+    const d = document.createElement('div');
+    d.className = 'slip';
+    const emoji = sportEmoji[s.sport] || '🎯';
+    d.innerHTML = `<div class="hit-tag">HIT ✓</div><div class="slip-sport">${emoji} ${s.sport}</div><div class="slip-pick">${s.pick}</div><div class="slip-bottom"><div class="slip-odds">${s.odds}</div><div class="slip-win-big">${s.win}</div></div>`;
+    track.appendChild(d);
+  });
+}
+// ────────────────────────────────────────────────────────
+
 </script>
+
+<!-- SECRET ADMIN TRIGGER (tiny invisible button bottom right) -->
+<button class="admin-trigger" onclick="openAdmin()" aria-hidden="true"></button>
+
+<!-- ADMIN OVERLAY -->
+<div class="admin-overlay" id="adminOverlay">
+  <div class="admin-box">
+    <h2>Recent Wins</h2>
+    <p>Add or remove wins from the carousel</p>
+
+    <!-- PASSWORD GATE -->
+    <div id="adminPw">
+      <div class="admin-field admin-pw">
+        <label>Password</label>
+        <input type="password" id="adminPwInput" placeholder="Enter password" onkeydown="if(event.key==='Enter')checkPw()">
+      </div>
+      <button class="admin-pw-btn" onclick="checkPw()">Unlock →</button>
+    </div>
+
+    <!-- ADMIN PANEL (shown after password) -->
+    <div class="admin-section" id="adminPanel">
+
+      <!-- Current wins list -->
+      <div class="admin-list" id="adminList"></div>
+
+      <!-- Add new win -->
+      <div class="admin-field">
+        <label>Sport</label>
+        <select id="newSport">
+          <option value="NBA">🏀 NBA</option>
+          <option value="UCL">⚽ Champions League</option>
+          <option value="MARCH">🏫 March Madness</option>
+          <option value="MLB">⚾ MLB</option>
+          <option value="ESPORTS">🎮 Esports</option>
+          <option value="TENNIS">🎾 Tennis</option>
+        </select>
+      </div>
+      <div class="admin-field">
+        <label>Pick Description</label>
+        <input type="text" id="newPick" placeholder="e.g. LeBron 28+ Pts">
+      </div>
+      <div class="admin-row">
+        <div class="admin-field">
+          <label>Odds</label>
+          <input type="text" id="newOdds" placeholder="-115 or +220" oninput="calcProfit()">
+        </div>
+        <div class="admin-field">
+          <label>Profit on $100</label>
+          <input type="text" id="newWin" placeholder="Auto-calculated" readonly style="opacity:0.6;cursor:not-allowed">
+        </div>
+      </div>
+      <button class="admin-add-btn" onclick="addWin()">Add Win</button>
+      <div class="admin-success" id="adminSuccess">✓ Win added! Carousel updated.</div>
+    </div>
+
+    <button class="admin-close" onclick="closeAdmin()">Close</button>
+  </div>
+</div>
+
 </body>
 </html>
